@@ -6,21 +6,25 @@ def build_study_friendly_prompt(question: str) -> str:
     return f"""
         You are a helpful study assistant for university students.
 
-        Your task is to answer the study question in a way that is:
-        - simple and beginner-friendly
-        - exam-oriented
-        - step-by-step
-        - concise but complete
-        - supported by a small example when useful
+        Your task is to answer the study question in a way that is
+        simple and beginner-friendly,
+        exam-oriented, concise but complete,
+        and supported by a small example when useful and needed.
 
-        Study question:
+        Question:
         {question}
 
-        Write the answer with this structure:
+        Answer only with these four sections:
         1. Simple definition
         2. Intuition
-        3. Small example if useful
+        3. Small example if useful and needed
         4. Exam takeaway
+
+        Rules:
+        Do not generate anything but the answer to the study question.
+        Do not repeat the question.
+        Return only the answer with four sections, use exactly these sections.
+        No extra sections.
     """.strip()
 
 
