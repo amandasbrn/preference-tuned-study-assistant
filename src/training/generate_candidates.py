@@ -1,15 +1,20 @@
 import pandas as pd
 from pathlib import Path
+import argparse
 import json
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from src.data.prompt_templates import build_study_friendly_prompt, build_formal_prompt
 
 MODEL_NAME = "Qwen/Qwen2.5-0.5B-Instruct"
 PROMPT_PATH = Path("data/raw/study_prompts.csv")
-OUTPUT_PATH = Path("data/processed/candidate_answers.jsonl")
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 model = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--limit', type=int, default=3)
+    return parser
 
 def load_prompt(data: Path) -> pd.DataFrame:
     if not data.exists():
@@ -56,7 +61,12 @@ def generate_output(formatted_prompt: str):
 def main():
     prompt = load_prompt(PROMPT_PATH)
 
-    df_subset = prompt.head(3).copy()
+    parser = parse_args()
+    args = parser.parse_args()
+
+    limit = args.limit
+    
+    df_subset = prompt.head(limit).copy()
     answer_a = []
     answer_b = []
     for p in df_subset['prompt']:
@@ -70,7 +80,10 @@ def main():
 
     row_dicts = df_subset.to_dict(orient="records")
 
-    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+    output_path = Path(f"data/processed/candidate_answers_{limit}_sample.jsonl")
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
         for i in range(len(row_dicts)):
             f.write(json.dumps(row_dicts[i], ensure_ascii=False) + "\n")
             print(f"[{i + 1}/{len(df_subset)}] {row_dicts[i]['id']} - {row_dicts[i]['subtopic']}")
