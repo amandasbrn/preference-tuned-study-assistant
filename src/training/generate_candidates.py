@@ -90,11 +90,5 @@ def main():
             print(f"Saved candidate pair for {row_dicts[i]['id']}")
             print('')
 
-    # print("STUDY FRIENDLY")
-    # print(output_a)
-    # print('-------------------------------------')
-    # print("FORMAL")
-    # print(output_b)
-
 if __name__ == "__main__":
     main()
