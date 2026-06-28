@@ -55,24 +55,27 @@ def generate_output(formatted_prompt: str):
 
 def main():
     prompt = load_prompt(PROMPT_PATH)
-    question = prompt.iloc[0]
-    prompt_a, prompt_b = format_prompt(question)
-    output_a = generate_output(prompt_a)
-    output_b = generate_output(prompt_b)
 
-    record = {
-        'id': question['id'],
-        'topic': question['topic'],
-        'subtopic': question['subtopic'],
-        'prompt': question['prompt'],
-        'answer_a': output_a,
-        'answer_b': output_b
-    }
+    df_subset = prompt.head(3).copy()
+    answer_a = []
+    answer_b = []
+    for p in df_subset['prompt']:
+        prompt_a, prompt_b = format_prompt(p)
+        output_a = generate_output(prompt_a)
+        answer_a.append(output_a)
+        output_b = generate_output(prompt_b)
+        answer_b.append(output_b)
+    df_subset['answer_a'] = answer_a
+    df_subset['answer_b'] = answer_b
+
+    row_dicts = df_subset.to_dict(orient="records")
 
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
-        f.write(json.dumps(record, ensure_ascii=False) + "\n")
-
-    print('Successfully saved candidate_answers.jsonl file!')
+        for i in range(len(row_dicts)):
+            f.write(json.dumps(row_dicts[i], ensure_ascii=False) + "\n")
+            print(f"[{i + 1}/{len(df_subset)}] {row_dicts[i]['id']} - {row_dicts[i]['subtopic']}")
+            print(f"Saved candidate pair for {row_dicts[i]['id']}")
+            print('')
 
     # print("STUDY FRIENDLY")
     # print(output_a)
