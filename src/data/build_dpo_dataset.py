@@ -36,12 +36,14 @@ def main():
     pref_data = input_pref_data(DATA_PATH)
     clean_pref_data = preprocessing(pref_data)
 
-    #used_cols = ['prompt', 'chosen', 'rejected']
+    used_cols = ['prompt', 'chosen', 'rejected']
 
     train_data, eval_data = train_test_split(clean_pref_data, test_size = 0.1, random_state=42)
 
     save_to_json(train_data, 'dpo_train')
     save_to_json(eval_data, 'dpo_eval')
+    save_to_json(train_data[used_cols], 'dpo_train_filtered')
+    save_to_json(eval_data[used_cols], 'dpo_eval_filtered')
 
 if __name__ == "__main__":
     main()
