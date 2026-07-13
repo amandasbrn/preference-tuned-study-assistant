@@ -5,42 +5,42 @@ Intuition: Imagine you're building a bridge using blocks. The first block (input
 
 Small Example: Consider a simple neural network with two hidden layers. At the end of training, after adjusting the weights, the final layer might have some errors. If we want to correct these errors, we would go backwards through the network, starting from the last layer and working our way up to the input layer. This process helps us understand which parts of the network need adjustment to make the model more accurate.
 
-Exam Takeaway: Understanding how backpropagation works allows us to fine-tune our models by adjusting their weights in reverse order, ensuring that the model learns effectively over time. This method is crucial for improving the accuracy and efficiency of machine learning algorithms.",,,,,,
+Exam Takeaway: Understanding how backpropagation works allows us to fine-tune our models by adjusting their weights in reverse order, ensuring that the model learns effectively over time. This method is crucial for improving the accuracy and efficiency of machine learning algorithms.",5,4,4,5,4.5,
 eval_dl_002,deep_learning,optimization,Why does gradient descent update weights in the opposite direction of the gradient?,medium,"1. **Simple Definition**: Gradient descent updates weights in the opposite direction of the gradient because it aims to minimize the loss function by moving towards the direction where the change in the loss decreases most rapidly. This ensures that the model's parameters converge to the optimal solution faster.
 
 2. **Intuition**: The intuition behind this approach comes from the concept of the steepest ascent path in a landscape. In a two-dimensional space, the steepest ascent path points upwards (towards higher values) while the steepest descent path points downwards (towards lower values). By updating weights in the opposite direction of the gradient, we're essentially moving along the steepest ascent path, which helps in finding the minimum value of the loss function.
 
 3. **Small Example**: Consider a simple linear regression problem where you want to find the best fit line through a set of data points. If you were to apply gradient descent directly on the loss function, you'd be moving in the same direction as the gradient, which would lead to overshooting the true solution. However, if you adjust your step size in the opposite direction of the gradient, you're effectively moving away from the local minima, which is more likely to be the global minimum. This process converges much faster than just moving in one direction.
 
-4. **Exam Takeaway**: Understanding why gradient descent updates weights in the opposite direction of the gradient is crucial for understanding how optimization algorithms work in machine learning and other fields. It allows",,,,,,
+4. **Exam Takeaway**: Understanding why gradient descent updates weights in the opposite direction of the gradient is crucial for understanding how optimization algorithms work in machine learning and other fields. It allows",5,5,5,5,5,
 eval_dl_003,deep_learning,regularization,Explain the difference between dropout and weight decay for reducing overfitting.,medium,"Simple definition: Dropout is a regularization technique where randomly selected neurons are removed during training, effectively preventing them from learning too much information at once. Weight decay, on the other hand, adds a penalty term to the loss function proportional to the square of the weights, encouraging the model to learn more complex features while keeping simpler ones under control.
 
 Intuition: Dropout helps prevent overfitting by making the network less sensitive to individual data points, as it removes redundant connections. Weight decay encourages the model to learn more complex representations by penalizing large weights, which can help in capturing intricate patterns in the data.
 
 Small example (if needed): Consider a simple neural network with two layers, each having 50 neurons. Initially, both layers have random weights. After applying dropout, some neurons might be dropped out, leaving fewer connections intact. This results in a smaller output layer compared to the original one, indicating that the network has learned less about the input data. However, after adding weight decay, the model learns more complex features because the larger weights encourage deeper connections, leading to better performance.
 
-Exam takeaway: Understanding the difference between dropout and weight decay is crucial for effective machine learning models. Dropout helps prevent overfitting by removing redundancy, while weight decay encourages complexity by penalizing large weights. Both techniques contribute to better generalization and model robustness.",,,,,,
+Exam takeaway: Understanding the difference between dropout and weight decay is crucial for effective machine learning models. Dropout helps prevent overfitting by removing redundancy, while weight decay encourages complexity by penalizing large weights. Both techniques contribute to better generalization and model robustness.",5,4,5,4,4.5,
 eval_dl_004,deep_learning,cnn,Why do CNNs use shared filters across an image?,medium,"1. **Simple Definition:** CNNs (Convolutional Neural Networks) use shared filters because they allow the network to learn features from multiple images simultaneously, which can improve its ability to recognize objects and scenes without overfitting to any single image.
 
 2. **Intuition:** The intuition behind this is that sharing filters allows the network to capture more information from each input image, making it easier to generalize to new, unseen data. This is akin to having a versatile tool kit that can adapt to different situations based on the context of the image.
 
 3. **Small Example:** Consider a scenario where you have two images of cats: one showing a cat looking at a dog, and another showing a cat looking directly at the camera. If you apply a filter to both images, the network will learn to distinguish between the two cats. However, if you apply the same filter to both images again, the network might still be able to identify the cat looking at the dog, even though it has learned to differentiate between the two cats. This demonstrates how the shared filter helps the network to learn from multiple inputs effectively.
 
-4. **Exam Takeaway:** In summary, CNNs use shared filters because they enable the network to learn from multiple images, thereby improving its ability to recognize objects and scenes without overfitting to any single image. This approach is crucial for tasks like object detection and scene recognition, as it allows the network to generalize well to new, unseen data.",,,,,,
+4. **Exam Takeaway:** In summary, CNNs use shared filters because they enable the network to learn from multiple images, thereby improving its ability to recognize objects and scenes without overfitting to any single image. This approach is crucial for tasks like object detection and scene recognition, as it allows the network to generalize well to new, unseen data.",5,5,5,5,5,
 eval_dl_005,deep_learning,attention,Explain query key and value in attention using a simple analogy.,medium,"Simple definition: In attention, a query key represents a specific piece of information about a document or topic being searched. It's like a clue that helps narrow down what you're looking for.
 
 Intuition: Think of it as a puzzle piece that fits into the right spot to find the exact thing you need. Just like how a puzzle piece fits perfectly where it belongs, a query key fits precisely where it needs to be.
 
 Small example: Imagine you have a big box of crayons. Each crayon has a name (query key) and a color (value). If you want to find a particular colored crayon, you would look for the one with that specific color. The query key tells you which crayon to look for, just like knowing which crayon to pick out from your box.
 
-Exam takeaway: Understanding query keys and values is like having a special tool that helps you focus on the most relevant information in a search. It's like finding the perfect match in a game of hide-and-seek!",,,,,,
+Exam takeaway: Understanding query keys and values is like having a special tool that helps you focus on the most relevant information in a search. It's like finding the perfect match in a game of hide-and-seek!",4,2,2,3,2.75,"does not explain what ""value"" is."
 eval_dl_006,deep_learning,transformer,Why does self-attention allow Transformers to process relationships between tokens?,medium,"Simple definition: Self-attention allows Transformers to process relationships between tokens because it enables them to understand context and meaning within each token independently while also considering the overall relationship between all tokens.
 
 Intuition: Imagine you're trying to solve a puzzle where each piece has its own color. Self-attention works similarly; it helps each piece (token) understand its position relative to others without being influenced by other pieces' positions, allowing it to see the bigger picture of how all pieces fit together.
 
 Small example: Consider a game where two players are trying to move their pieces around on a board. Each player can see their own piece's location and orientation, but they don't know about the other player's piece's movements. With self-attention, both players can see the entire board at once, knowing that the other player will be moving their piece as well, thus understanding the larger movement pattern.
 
-Exam takeaway: Understanding how self-attention works is crucial for developing more advanced language models like Transformers, which can handle complex relationships between words and phrases in natural language processing tasks.",,,,,,
+Exam takeaway: Understanding how self-attention works is crucial for developing more advanced language models like Transformers, which can handle complex relationships between words and phrases in natural language processing tasks.",5,4,4,4,4.25,
 eval_dl_007,deep_learning,rnn_lstm,Explain why LSTM gates help with long-term dependencies.,medium,"Simple Definition: 
 LSTM (Long Short-Term Memory) gates help capture long-term dependencies because they allow the network to remember past information while also learning new patterns over time.
 
@@ -51,33 +51,33 @@ Small Example:
 Let's say you're tracking your daily commute times. At the start of the day, you might record your commute time as 5 minutes. As the day progresses, you might notice that your commute time increases slightly due to traffic or other factors. The LSTM gate can remember this increase and adjust its prediction accordingly, helping you stay on track with your schedule.
 
 Exam Takeaway:
-Understanding how LSTM gates handle long-term dependencies is crucial for developing more accurate models in fields like natural language processing, speech recognition, and machine translation. It enables the network to maintain context and make informed decisions based on historical data, which is essential for effective communication and decision-making.",,,,,,
+Understanding how LSTM gates handle long-term dependencies is crucial for developing more accurate models in fields like natural language processing, speech recognition, and machine translation. It enables the network to maintain context and make informed decisions based on historical data, which is essential for effective communication and decision-making.",4,5,4,3,4,
 eval_dl_008,deep_learning,rl,Why does DQN use both a replay buffer and a target network?,hard,"Simple definition: DQN uses both a replay buffer and a target network because they work together to improve learning efficiency and adaptability.
 
 Intuition: The replay buffer stores experiences from previous training sessions, helping the agent learn from past mistakes and successes. The target network updates its weights based on the performance of the agent, allowing it to quickly adjust its strategy without needing new data every time.
 
-Small example (if needed): Imagine you're playing a game where your goal is to collect as many points as possible. You might have a replay buffer that keeps track of how well you've played before, so you can learn from your mistakes. Meanwhile, your target network adjusts its strategy based on how well it's performing compared to other agents. This allows your agent to keep improving over time without having to retrain from scratch each time.",,,,,,
+Small example (if needed): Imagine you're playing a game where your goal is to collect as many points as possible. You might have a replay buffer that keeps track of how well you've played before, so you can learn from your mistakes. Meanwhile, your target network adjusts its strategy based on how well it's performing compared to other agents. This allows your agent to keep improving over time without having to retrain from scratch each time.",5,5,4,5,4.75,
 eval_dl_009,deep_learning,representation_learning,Explain why contrastive learning needs positive and negative examples.,hard,"Simple definition: Contrastive learning involves comparing two sets of data (positive and negative) to identify patterns and similarities between them.
 
 Intuition: Positive examples are those that align well with the desired outcome, while negative examples are those that do not match the goal.
 
 Small example: Imagine you're trying to predict whether someone will buy a product based on their past purchases. If all your positive examples are about buying groceries and none about buying electronics, it might be challenging to accurately predict which type of purchase they'll make next. Conversely, if you have many more negative examples like ""they never bought a new phone"" than positive ones like ""they recently bought an old TV,"" this could help improve your model's accuracy.
 
-Exam takeaway: Understanding how to balance positive and negative examples is crucial for effective contrastive learning. It helps ensure that models can learn from both positive and negative experiences effectively.",,,,,,
+Exam takeaway: Understanding how to balance positive and negative examples is crucial for effective contrastive learning. It helps ensure that models can learn from both positive and negative experiences effectively.",4,3,2,4,3.25,"concise, but not complete. Does not directly answer the question"
 eval_dl_010,deep_learning,model_compression,Compare pruning quantization and distillation in simple language.,hard,"Simple definition: Pruning quantization involves reducing the number of parameters used during training, while distillation combines knowledge from multiple models into one model's architecture without changing its weights.
 
 Intuition: In pruning, you remove unnecessary parts of a model (like noise) to make it simpler and faster to train. In distillation, you combine information from different models to create a new model that can perform better than any individual model.
 
 Small example: Imagine you have two models, Model A and Model B. If you want to improve Model A, you might prune some of its parameters to reduce complexity. But if you want to improve both, you could also combine their features using distillation techniques.
 
-Exam takeaway: Understanding how to prune and combine models effectively is crucial for improving performance in machine learning tasks.",,,,,,
+Exam takeaway: Understanding how to prune and combine models effectively is crucial for improving performance in machine learning tasks.",4,4,3,4,3.75,
 eval_nlp_001,nlp,tokenization,Why do modern language models often use subword tokenization instead of word tokenization?,medium,"Simple definition: Subword tokenization involves breaking down words into smaller units called subwords, which can be used as individual tokens rather than whole words. This allows for more efficient processing and storage of text data.
 
 Intuition: Imagine you have a long string of letters like ""hello"". In word tokenization, each letter would become its own separate unit (e.g., 'h', 'e', 'l', 'o'). However, in subword tokenization, we break it down into smaller units (e.g., 'hllo'), making them easier to work with and store.
 
 Small example: Consider this sentence: ""The quick brown fox jumps over the lazy dog."" If we were using word tokenization, it might look like this: ""The"" + ""quick"" + ""brown"" + ""fox"" + ""jumps"" + ""over"" + ""the"" + ""lazy"" + ""dog."" But in subword tokenization, we could split it into: ""Th"" + ""eQu"" + ""kQu"" + ""n"" + ""b"" + ""r"" + ""o"" + ""w"" + ""i"" + ""s"" + ""f"" + ""x"" + ""J"" + ""u"" + ""m"" + ""o"" + ""v"" + ""e"" + ""r"" + ""t"" + ""h"" + ""o"" + ""d.""
 
-Exam takeaway: Subword tokenization",,,,,,
+Exam takeaway: Subword tokenization",5,4,5,5,4.75,
 eval_nlp_002,nlp,embeddings,Explain why word embeddings can capture similarity between words.,medium,"Simple Definition: Word embeddings represent words as vectors in high-dimensional spaces where each dimension corresponds to a semantic feature of the word. These vectors allow us to quantify how similar two words are based on their meanings.
 
 Intuition: Imagine you have a bunch of toy cars. If you compare them, you might notice that some cars look alike, while others have different features like color or size. Word embeddings do something similar, but instead of comparing physical attributes, they compare meaning.
@@ -90,35 +90,35 @@ Small Example (if helpful): Let's say we have three words: ""cat"", ""dog"", and
 
 Now, imagine you're looking at a photo of a cat, a dog, and a bird. The vector representing each would be very similar because all three animals share many common characteristics. However, if you were to compare the vectors, you'd see that they're quite different from each other—because they don't share any significant similarities.
 
-Exam Takeaway: Word embeddings help us understand how similar words are by showing us how much they mean to us. This makes it easier to recognize patterns and relationships between words in text data.",,,,,,
+Exam Takeaway: Word embeddings help us understand how similar words are by showing us how much they mean to us. This makes it easier to recognize patterns and relationships between words in text data.",5,5,5,5,5,
 eval_nlp_003,nlp,language_models,What does it mean for a language model to predict the next token?,easy,"Simple definition: A language model predicts the next token based on its current state and context.
 
 Intuition: Predicting the next token means understanding what comes next in the sequence of tokens generated by the model.
 
 Small example: Consider a simple language model predicting the next word in a sentence. If the model sees ""the"" followed by ""quick,"" it would predict ""quick."" This prediction relies on recognizing patterns in sequences of words.
 
-Exam takeaway: Understanding how a language model makes predictions helps in analyzing text generation models and improving natural language processing techniques.",,,,,,
+Exam takeaway: Understanding how a language model makes predictions helps in analyzing text generation models and improving natural language processing techniques.",5,5,4,5,4.75,
 eval_nlp_004,nlp,bert,Why does BERT use masked language modeling during pretraining?,medium,"Simple definition: BERT (Bidirectional Encoder Representations from Transformers) uses masked language modeling during pretraining because it helps improve the model's understanding of context and relationships between words, making it more effective at generating human-like text.
 
 Intuition: Imagine you're trying to guess what your friend will say next in a conversation. BERT learns to predict their response based on previous conversations, which can help it understand the context better and make more accurate predictions about future interactions.
 
 Small example: Let's say you have a chatbot named ""Alex"". When Alex hears someone ask ""What's your favorite color?"", BERT might learn to predict what color Alex would respond with based on past conversations where Alex has asked questions like this. This helps the bot become more confident in its responses and makes it easier for users to interact with it.
 
-Exam takeaway: Understanding how BERT uses masked language modeling during pretraining allows developers to create more realistic and natural-sounding AI assistants. It helps the models learn to anticipate user queries and provide appropriate responses, enhancing overall usability and effectiveness.",,,,,,
+Exam takeaway: Understanding how BERT uses masked language modeling during pretraining allows developers to create more realistic and natural-sounding AI assistants. It helps the models learn to anticipate user queries and provide appropriate responses, enhancing overall usability and effectiveness.",5,5,5,5,5,
 eval_nlp_005,nlp,gpt,Explain why GPT is called a causal language model.,medium,"Simple Definition: A causal language model is a type of machine learning model designed to understand cause-and-effect relationships between variables. It uses statistical methods to predict outcomes based on past events and their effects.
 
 Intuition: Causal models can help us understand how different factors influence each other over time. For example, if you eat breakfast, it affects your mood; this relationship can be modeled using a causal language model.
 
 Small Example (if needed): Imagine you have two types of cookies - chocolate chip and oatmeal raisin. If you eat more chocolate chip cookies than oatmeal raisin cookies, they will affect your overall cookie preference. This is an example of a causal relationship where one thing influences another.
 
-Exam Takeaway: Understanding causality is crucial in many fields like economics, medicine, and social sciences. Causal models allow researchers to make predictions about future outcomes based on historical data, making them invaluable tools in analyzing complex systems.",,,,,,
+Exam Takeaway: Understanding causality is crucial in many fields like economics, medicine, and social sciences. Causal models allow researchers to make predictions about future outcomes based on historical data, making them invaluable tools in analyzing complex systems.",3,4,3,3,3.25,does not answer why GPT is considered as one
 eval_nlp_006,nlp,seq2seq,Explain how an encoder-decoder model works in machine translation.,medium,"Simple Definition: An encoder-decoder model is a type of neural network designed to translate one language into another. It consists of two main parts: an encoder (which maps input text to numerical representations) and a decoder (which translates those numbers back into output text).
 
 Intuition: Think of it like a puzzle where the encoder helps you understand the meaning of words, while the decoder uses this understanding to produce the correct output sentence.
 
 Small Example: Imagine you have a set of instructions written in English. The encoder would take these instructions as input and convert them into a sequence of symbols that can be understood by your brain. Then, the decoder takes this sequence and tries to figure out what the original instructions were about based on the symbols it's given. This process allows the decoder to create a coherent output sentence that makes sense in the target language.
 
-Exam Takeaway: Understanding how an encoder-decoder model works is crucial for translating between languages efficiently. It involves converting inputs into numerical codes and then decoding these codes back into meaningful outputs. This method is particularly useful in tasks like machine translation, where accurate translations are essential for communication across different languages.",,,,,,
+Exam Takeaway: Understanding how an encoder-decoder model works is crucial for translating between languages efficiently. It involves converting inputs into numerical codes and then decoding these codes back into meaningful outputs. This method is particularly useful in tasks like machine translation, where accurate translations are essential for communication across different languages.",5,5,4,4,4.5,
 eval_nlp_007,nlp,decoding,Compare greedy decoding beam search and sampling in simple language.,hard,"Simple definition: Both greedy decoding beam search and sampling aim to find the most likely sequence of symbols given an input string. Greedy decoding uses the shortest path first (beam search), while sampling randomly selects one symbol at each step.
 
 Intuition: In greedy decoding, you start with the shortest possible paths and expand them as you encounter longer ones. Sampling involves choosing a random symbol from the current state without considering future possibilities.
@@ -134,7 +134,7 @@ Small example: Imagine you have a sentence ""The quick brown fox jumps over the 
 - Choose a random letter from the current state (""T"").
 - This could be ""T"", ""H"", or any other letter.
 
-Exam Takeaway: Both methods can lead to similar results, but they differ in how they handle randomness. Greedy decoding beam search starts with the shortest paths, while sampling randomly chooses a symbol based on its frequency. The choice between these approaches depends on whether you prefer simplicity or flexibility in your decoding strategy.",,,,,,
+Exam Takeaway: Both methods can lead to similar results, but they differ in how they handle randomness. Greedy decoding beam search starts with the shortest paths, while sampling randomly chooses a symbol based on its frequency. The choice between these approaches depends on whether you prefer simplicity or flexibility in your decoding strategy.",4,4,4,4,4,
 eval_nlp_008,nlp,ner,Explain BIO tagging for named entity recognition with a small example.,medium,"Simple Definition: 
 BIO (Biological Information Object) tagging is a method used in natural language processing to identify entities such as people, places, organizations, and more within text data. It helps in understanding the context of information being discussed.
 
@@ -158,18 +158,18 @@ In bio tagging, we would look at each word:
 This shows us that ""fox"" refers to an animal, ""dog"" to another animal, etc., helping us understand the relationships between different parts of the sentence.
 
 Exam Takeaway:
-Understanding how to tag entities like this can be very useful in many fields, from social media analysis to legal documents. By identifying key entities, researchers and developers can better comprehend the content and structure of their data.",,,,,,
+Understanding how to tag entities like this can be very useful in many fields, from social media analysis to legal documents. By identifying key entities, researchers and developers can better comprehend the content and structure of their data.",5,4,4,5,4.5,
 eval_nlp_009,nlp,rag,Why can retrieval augmented generation help reduce hallucination?,medium,"Simple definition: Retrieval Augmented Generation (RAG) uses text from a database to create new content, including images, videos, and audio files, which helps reduce hallucinations because it provides context and coherence that humans often struggle with.
 
 Intuition: When we read a book, our brains process information sequentially, building up mental models of what's happening in the story. RAG allows us to see how different parts of a text interact with each other, creating a more coherent narrative that reduces the likelihood of hallucinations as our brain tries to make sense of the new information.
 
 Small example: Imagine you're reading a novel about a character who has been living in a dream world for years. The first few chapters might be very surreal and confusing, but as you continue to read, you start to piece together the characters' thoughts and feelings, their dreams, and even the environment they inhabit. This gradual integration of information makes the experience less overwhelming and more realistic, reducing the risk of hallucinations.
 
-Exam takeaway: RAG helps reduce hallucinations by providing a structured, coherent narrative that integrates new information seamlessly into existing knowledge, making the experience feel more real and less jarring.",,,,,,
+Exam takeaway: RAG helps reduce hallucinations by providing a structured, coherent narrative that integrates new information seamlessly into existing knowledge, making the experience feel more real and less jarring.",5,5,4,5,4.75,
 eval_nlp_010,nlp,evaluation,Why is evaluating generated text harder than evaluating classification accuracy?,hard,"Simple definition: Evaluating generated text involves assessing whether it accurately represents the intended content without any human intervention.
 
 Intuition: Humans often struggle with generating natural language because they lack the context and nuance of human thought processes.
 
 Small example (if useful): Consider a simple story where the characters make decisions based on limited information. If you evaluate this story using traditional methods like grammar checks or word count, you might miss important nuances. However, if you analyze the story's structure, character motivations, and dialogue choices, you can identify potential issues with the generated text.
 
-Exam takeaway: Understanding how humans process and interpret language is crucial for evaluating generated text effectively. It requires a deeper understanding of human cognitive processes rather than relying solely on automated evaluation systems.",,,,,,
+Exam takeaway: Understanding how humans process and interpret language is crucial for evaluating generated text effectively. It requires a deeper understanding of human cognitive processes rather than relying solely on automated evaluation systems.",4,4,4,5,4.25,
