@@ -4,32 +4,47 @@
 
 This project builds an end-to-end preference-tuned study assistant using **Direct Preference Optimization (DPO)**.
 
-The goal is to fine-tune a small open-source language model so that it produces clearer, more exam-oriented explanations for technical study questions. The project focuses on Deep Learning and Natural Language Processing concepts, using a custom preference dataset built from generated candidate answers and manual preference labels.
+The motivation for this project comes from my own learning experience as a data science student. When studying technical subjects such as Deep Learning, NLP, Cloud Computing, and Cybersecurity, I often use language models to help me understand difficult concepts. However, the answers are not always in the style I actually need for revision. Sometimes they are too verbose, too abstract, too formal, or not structured in a way that helps me prepare for exams.
 
-The project covers the full AI engineering workflow:
+For studying, I usually need explanations that are:
 
-* Prompt dataset creation
-* Candidate answer generation
-* Preference labeling
-* DPO dataset construction
-* Baseline evaluation
-* LoRA-based DPO fine-tuning
-* Post-DPO evaluation
-* Hyperparameter tuning
-* Error analysis and reporting
+* Simple enough to understand quickly
+* Technically correct
+* Structured for revision
+* Concise but complete
+* Written in exam-ready language
+* Supported by small examples or analogies when useful
+
+This project explores whether preference tuning can help a small open-source language model better align with that preferred study style.
+
+The final system compares a base instruction-tuned model with a DPO-tuned model trained on preference pairs of study explanations.
 
 ## Problem Statement
 
-General-purpose language models can answer study questions, but their responses are not always aligned with how students prefer to learn. Some answers may be too verbose, too technical, too vague, or not structured for exam revision.
+General-purpose language models can answer study questions, but their responses are not always aligned with how students actually study.
 
-This project explores whether preference tuning can help a small language model produce answers that are:
+For example, when preparing for exams, a useful answer is not just “correct.” It also needs to be clear, memorable, structured, and easy to turn into an exam response. A technically correct but overly formal answer may still be hard to study from. On the other hand, a friendly answer that is vague or inaccurate is also not useful.
 
-* Clear
-* Beginner-friendly
-* Exam-oriented
-* Concise but complete
-* Technically accurate
-* Structured for revision
+This project focuses on the following question:
+
+> Can Direct Preference Optimization help a small language model produce study explanations that are more aligned with a student’s preferred revision style?
+
+The target behavior is a study assistant that explains technical concepts in a way that is clear, exam-oriented, and beginner-friendly while still preserving technical accuracy.
+
+## Why This Project Matters to Me
+
+This project is connected to how I personally learn technical material.
+
+During my master’s study, I often need to quickly understand concepts across machine learning, deep learning, NLP, cloud computing, and cybersecurity. I do not only want a model that gives long textbook-style explanations. I want a model that can explain concepts in the way I would want to revise them before an exam:
+
+1. Start with a simple definition.
+2. Explain the intuition.
+3. Give a small example if useful.
+4. End with a concise exam takeaway.
+
+That preferred answer structure became the foundation for the preference dataset used in this project.
+
+Rather than only fine-tuning a model to imitate answers, this project uses preference pairs to teach the model which answer style is more useful for study revision.
 
 ## Why DPO?
 
@@ -38,20 +53,14 @@ Direct Preference Optimization is a preference-tuning method that trains a model
 * `chosen`: the preferred answer
 * `rejected`: the less preferred answer
 
-Instead of only teaching the model from ideal answers, DPO teaches the model to prefer better responses over weaker ones. This makes it suitable for improving response style, usefulness, and alignment with a target preference.
+Instead of only teaching the model from ideal answers, DPO teaches the model to prefer better responses over weaker ones.
 
-In this project, the preference objective is:
+In this project, DPO is used to align the model toward my preferred study-assistant behavior:
 
-> Prefer answers that are technically correct, clear, exam-useful, concise, and well-structured for study revision.
+> Prefer explanations that are technically correct, clear, concise, exam-ready, and useful for revision.
 
-## Project Scope
+This makes the project more realistic than simple supervised fine-tuning, because the model is trained on comparative preferences rather than only single “correct” answers.
 
-The MVP focuses on two technical study areas:
-
-* Deep Learning
-* Natural Language Processing
-
-The project uses a small model and lightweight fine-tuning setup so it can be completed by one person with limited compute.
 
 ## Base Model
 
@@ -440,8 +449,14 @@ Completed components:
 
 ## Main Takeaway
 
-This project demonstrates a realistic preference-tuning workflow for a study assistant. The tuned DPO model became more competitive after hyperparameter tuning and improved some held-out prompts, especially in exam usefulness, but the base model remained slightly stronger overall.
+This project demonstrates a realistic preference-tuning workflow for a study assistant.
 
-The result highlights an important practical lesson:
+The original goal was personal and practical: to build a model that explains difficult technical concepts in the way I actually prefer to study them — simple, structured, and exam-ready.
+
+The tuned DPO model became more competitive after hyperparameter tuning and improved some held-out prompts, especially in exam usefulness. However, the base model remained slightly stronger overall.
+
+This result highlights an important lesson:
 
 > Preference tuning is not automatically better. It depends heavily on preference data quality, training setup, and evaluation discipline.
+
+Even though the tuned model did not clearly outperform the base model on average, the project successfully demonstrates the full alignment workflow: dataset creation, preference labeling, DPO training, evaluation, hyperparameter tuning, and honest analysis.
