@@ -1,18 +1,26 @@
 import pandas as pd
+import argparse
 from pathlib import Path
 
-DATA_PATH = Path("data/raw/study_prompts.csv")
+#DATA_PATH = Path("data/raw/study_prompts.csv")
 
 REQUIRED_COLUMNS = ["id", "topic", "subtopic", "prompt", "difficulty"]
 VALID_TOPICS = {"deep_learning", "nlp"}
 VALID_DIFFICULTIES = {"easy", "medium", "hard"}
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input-path')
+    return parser.parse_args()
 
 def main():
-    if not DATA_PATH.exists():
-        raise FileNotFoundError(f"File not found: {DATA_PATH}")
+    args = parse_args()
+    input_path = Path(args.input_path)
 
-    df = pd.read_csv(DATA_PATH)
+    if not input_path.exists():
+        raise FileNotFoundError(f"File not found: {input_path}")
+
+    df = pd.read_csv(input_path)
 
     print("Dataset preview:")
     print(df.head())
