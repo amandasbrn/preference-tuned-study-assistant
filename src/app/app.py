@@ -104,21 +104,24 @@ def main():
     generate_button = st.button("Generate Answers")
 
     if generate_button:
-        with st.spinner("Generating base model answer..."):
-            base_output = generate_output(tokenizer, base_model, question)
+        # with st.spinner("Generating base model answer..."):
+        #     base_output = generate_output(tokenizer, base_model, question)
 
         with st.spinner("Generating DPO-tuned answer..."):
             dpo_output = generate_output(tokenizer, dpo_model, question)
 
-        col1, col2 = st.columns(2)
+        #col1, col2 = st.columns(2)
 
-        with col1:
-            st.subheader("Base Model")
-            st.write(base_output)
+        # with col1:
+        #     st.subheader("Base Model")
+        #     st.write(base_output)
 
-        with col2:
-            st.subheader("DPO-Tuned Model")
-            st.write(dpo_output)
+        # with col2:
+        #     st.subheader("DPO-Tuned Model")
+        #     st.write(dpo_output)
+        
+        st.subheader("DPO-Tuned Model")
+        st.write(dpo_output)
 
 
 if __name__ == "__main__":
