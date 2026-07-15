@@ -401,6 +401,15 @@ PYTHONPATH=. python src/evaluation/create_dpo_comparison_sheet.py \
   --output-path reports/tuning/dpo_comparison_lr1e-6_beta0.1_steps20_r16.csv
 ```
 
+## Streamlit Demo
+
+The project includes a simple Streamlit demo that compares the base model and the DPO-tuned model side by side.
+
+Run the app with:
+
+```bash
+PYTHONPATH=. python -m streamlit run src/app/app.py
+
 ## Limitations
 
 This project has several limitations:
