@@ -4,6 +4,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.append(str(PROJECT_ROOT))
 
+import gc
 import streamlit as st
 import torch
 from src.data.prompt_templates import build_study_friendly_prompt
@@ -34,6 +35,10 @@ def load_dpo_model():
     dpo_model = dpo_model.to(torch.float32)
     dpo_model.eval()
     return dpo_model
+
+def cleanup_model(model):
+    del model
+    gc.collect()
 
 def format_prompt(question: str) -> str:
     baseline = build_study_friendly_prompt(question)
@@ -102,12 +107,16 @@ def main():
     )
     generate_button = st.button("Generate Answers")
 
-    if generate_button:
+    if st.button("Generate Answers"):
         with st.spinner("Generating base model answer..."):
+            base_model = load_base_model()
             base_output = generate_output(tokenizer, base_model, question)
+            cleanup_model(base_model)
 
         with st.spinner("Generating DPO-tuned answer..."):
+            dpo_model = load_dpo_model()
             dpo_output = generate_output(tokenizer, dpo_model, question)
+            cleanup_model(dpo_model)
 
         col1, col2 = st.columns(2)
 
