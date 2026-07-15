@@ -15,13 +15,13 @@ ADAPTER_PATH = "crispytempura/dpo-study-assistant-lora"
 
 @st.cache_resource
 def load_tokenizer():
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, torch_dtype=torch.float32)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, dtype=torch.float32)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     return tokenizer
 
 def load_base_model():
-    base_model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, torch_dtype=torch.float32)
+    base_model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, dtype=torch.float32)
     base_model.eval()
     return base_model
 
