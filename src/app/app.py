@@ -13,19 +13,18 @@ from peft import LoraConfig, get_peft_model, PeftModel
 MODEL_NAME = "Qwen/Qwen2.5-0.5B-Instruct"
 ADAPTER_PATH = "crispytempura/dpo-study-assistant-lora"
 
+@st.cache_resource
 def load_tokenizer():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, dtype=torch.float32)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     return tokenizer
 
-@st.cache_resource
 def load_base_model():
     base_model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, dtype=torch.float32)
     base_model.eval()
     return base_model
 
-@st.cache_resource
 def load_dpo_model():
     '''
         separate base model + LoRA adapter
@@ -104,24 +103,24 @@ def main():
     generate_button = st.button("Generate Answers")
 
     if generate_button:
-        # with st.spinner("Generating base model answer..."):
-        #     base_output = generate_output(tokenizer, base_model, question)
+        with st.spinner("Generating base model answer..."):
+            base_output = generate_output(tokenizer, base_model, question)
 
         with st.spinner("Generating DPO-tuned answer..."):
             dpo_output = generate_output(tokenizer, dpo_model, question)
 
-        #col1, col2 = st.columns(2)
+        col1, col2 = st.columns(2)
 
-        # with col1:
-        #     st.subheader("Base Model")
-        #     st.write(base_output)
+        with col1:
+            st.subheader("Base Model")
+            st.write(base_output)
 
-        # with col2:
-        #     st.subheader("DPO-Tuned Model")
-        #     st.write(dpo_output)
+        with col2:
+            st.subheader("DPO-Tuned Model")
+            st.write(dpo_output)
         
-        st.subheader("DPO-Tuned Model")
-        st.write(dpo_output)
+        # st.subheader("DPO-Tuned Model")
+        # st.write(dpo_output)
 
 
 if __name__ == "__main__":
