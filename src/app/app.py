@@ -5,6 +5,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.append(str(PROJECT_ROOT))
 
 import streamlit as st
+import torch
 from src.data.prompt_templates import build_study_friendly_prompt
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import LoraConfig, get_peft_model, PeftModel
@@ -14,13 +15,13 @@ ADAPTER_PATH = "crispytempura/dpo-study-assistant-lora"
 
 @st.cache_resource
 def load_tokenizer():
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, torch_dtype=torch.float32)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     return tokenizer
 
 def load_base_model():
-    base_model = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
+    base_model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, torch_dtype=torch.float32)
     base_model.eval()
     return base_model
 
@@ -31,6 +32,7 @@ def load_dpo_model():
     '''
     base_model = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
     dpo_model = PeftModel.from_pretrained(base_model, ADAPTER_PATH)
+    dpo_model = dpo_model.to(torch.float32)
     dpo_model.eval()
     return dpo_model
 
