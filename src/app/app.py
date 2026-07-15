@@ -10,7 +10,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import LoraConfig, get_peft_model, PeftModel
 
 MODEL_NAME = "Qwen/Qwen2.5-0.5B-Instruct"
-ADAPTER_PATH = "models/tuning/dpo_lr1e-6_beta0.1_steps20_r16"
+ADAPTER_PATH = "crispytempura/dpo-study-assistant-lora"
 
 @st.cache_resource
 def load_tokenizer():
