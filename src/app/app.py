@@ -13,13 +13,13 @@ from peft import LoraConfig, get_peft_model, PeftModel
 MODEL_NAME = "Qwen/Qwen2.5-0.5B-Instruct"
 ADAPTER_PATH = "crispytempura/dpo-study-assistant-lora"
 
-@st.cache_resource
 def load_tokenizer():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, dtype=torch.float32)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     return tokenizer
 
+@st.cache_resource
 def load_base_model():
     base_model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, dtype=torch.float32)
     base_model.eval()
