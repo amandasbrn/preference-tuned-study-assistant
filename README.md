@@ -409,6 +409,7 @@ Run the app with:
 
 ```bash
 PYTHONPATH=. python -m streamlit run src/app/app.py
+```
 
 ## Limitations
 
